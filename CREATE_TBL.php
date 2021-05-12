@@ -47,8 +47,8 @@
                 id INT(10) AUTO_INCREMENT PRIMARY KEY,
                 username VARCHAR(50) NOT NULL,
                 title VARCHAR(100),
-                platform VARCHAR(10),
-                status VARCHAR(10))";
+                platform VARCHAR(50),
+                status VARCHAR(50))";
 
     if (!mysqli_query($con, $sqlCreateRecordTbl)) {
         echo("Error description: " . mysqli_error($con) . "<br/>");
