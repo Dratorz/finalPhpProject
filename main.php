@@ -61,6 +61,8 @@
                     <option value="PS5">PS5</option>
                     <option value="Xbox One">Xbox One</option>
                     <option value="Xbox Series X">Xbox Series X</option>
+                    <option value="IOS">IOS</option>
+                    <option value="Android">Android</option>
                 </select>
 
             <label>Status</label>
@@ -92,13 +94,15 @@
         </form>
         <table>
             <tr><th>Game Title</th> <th>Platform</th> <th>Status</th></tr>
-            <?php //include 'GET_GAMES.php'
+            <?php
+            //search for user's records
             if($_POST['search']){
                 $query = $con->prepare("SELECT title, platform, status FROM RECORD WHERE username=?");
                 $username = $_POST['user'];
                 $selectQuery = $query->bind_param("s", $username);
 
             }
+            //display current user's records
             else{
                 $query = $con->prepare("SELECT title, platform, status FROM RECORD WHERE username=?");
                 $username = $_SESSION['username'];
