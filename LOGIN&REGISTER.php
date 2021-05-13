@@ -14,22 +14,28 @@
         }
         else{
 
-            $query = $con->prepare("SELECT * FROM USER WHERE username = ?  AND password = ?");
+            $query = $con->prepare("SELECT username, password FROM USER WHERE username = ?  AND password = ?");
             $selectQuery= $query->bind_param("ss",$user,$pass);
 
             $user = $_POST['username'];
             $pass = $_POST['password'];
             $pass = md5($pass);
             if($selectQuery = $query->execute()){
+                $query->bind_result($username, $password);
+                if($query->fetch()){
+                    if($user == $username && $pass == $password){
+                        session_start();
+                        $_SESSION["username"] = $user;
 
-                session_start();
-                $_SESSION["username"] = $user;
+                        header("location:main.php");
+                    }
+                    else{
+                        echo "Wrong login information";
+                    }
+                }
 
-                header("location:main.php");
             }
-            else{
-                echo "Wrong login information";
-            }
+
             mysqli_close($con);
         }
     }
