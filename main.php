@@ -32,7 +32,7 @@
             border-collapse: collapse;
         }
         .top{
-            width: 50%;
+            width: 550px;
             height: 40px;
             display: inline-block;
         }
@@ -47,11 +47,21 @@
 <main>
 
     <fieldset class="top" style="float: left">
+        <legend>Search for user:</legend>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                Username:
+                <input type="text" name="user" style="width: 74%"/>
+                <input type="submit" value="Search" name="search" />
+            </form>
+    </fieldset>
+    <br/><br/><br/><br/>
+
+    <fieldset class="top" style="float: left">
         <legend>Add/Update a game</legend>
 
         <form method="post" action="ADD_GAME.php">
             <label>Title: </label>
-            <input type="text" name="title" style="width: 20%"/>
+            <input type="text" name="title" style="width: 19%"/>
 
             <label>Platform: </label>
                 <select name="platform">
@@ -73,25 +83,20 @@
                     <option value="Not Playing">Not Playing</option>
                 </select>
 
-            <input type="submit" value="Add" name="add" />
+            <input type="submit" value="Save" name="add" />
         </form>
 
     </fieldset>
 
 
 
-    </fieldset>
+
     <br/><br/><br/><br/>
 
 
     <fieldset style="display: inline; width: 100%" >
         <legend>Current Games</legend>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-            <input type="text" name="user" style="width: 20%"/>
-            <input type="submit" value="Search" name="search" />
-
-        </form>
         <table>
             <tr><th>Game Title</th> <th>Platform</th> <th>Status</th></tr>
             <?php
