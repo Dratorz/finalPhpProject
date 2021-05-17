@@ -1,3 +1,16 @@
+<style type="text/css">
+
+    body {
+        background-color: darkslateblue;
+        color: white;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+        float: right;
+    }
+</style>
+
 <?php
     $con = mysqli_connect("localhost",
         "php_student",
@@ -6,6 +19,7 @@
     if(mysqli_connect_errno()){
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
+    error_reporting(E_ERROR | E_PARSE);
 
     //LOGIN
     if($_POST['login']){
@@ -46,6 +60,7 @@
             || empty($_POST['password'])){
 
             echo('Please fill all of the fields');
+            echo "<a href='Login.php'> Go Back </a>";
         }
         else{
             $query = $con->prepare("INSERT INTO user(username, password) 
@@ -58,9 +73,11 @@
 
             if($insertQuery = $query->execute()){
                 echo "Registration successful";
+                echo "<a href='Login.php'> Go Back </a>";
             }
             else{
                 echo "Registration unsuccessful";
+                echo "<a href='Login.php'> Go Back </a>";
             }
             mysqli_close($con);
         }

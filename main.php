@@ -27,6 +27,11 @@
             margin-left: 9%;
             margin-right: 9%;
         }
+        a{
+            text-decoration: none;
+            color: white;
+            float: right;
+        }
         table, th, td{
             border: thin solid white;
             border-collapse: collapse;
@@ -54,6 +59,8 @@
                 <input type="submit" value="Search" name="search" />
             </form>
     </fieldset>
+
+    <a href="LOGOUT.php">Logout</a>
     <br/><br/><br/><br/>
 
     <fieldset class="top" style="float: left">
@@ -95,7 +102,8 @@
 
 
     <fieldset style="display: inline; width: 100%" >
-        <legend>Current Games</legend>
+        <legend>Current Games for: <?php if($_POST['search']){ echo $_POST['user'];}
+                                    else{ echo $_SESSION['username'];}?></legend>
 
         <table>
             <tr><th>Game Title</th> <th>Platform</th> <th>Status</th></tr>
